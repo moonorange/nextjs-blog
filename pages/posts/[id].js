@@ -2,16 +2,17 @@ import Layout from '../../componetns/layout'
 import { getAllPostsIds, getPostData } from '../../lib/posts'
 
 
-export default functon Post({ postData }) {
+export default function Post({ postData }) {
     return (
-        <Layout>
-        {postData.titile}
+      <Layout>
+        {postData.title}
         <br />
         {postData.id}
         <br />
         {postData.date}
-    )   </Layout>
-}
+      </Layout>
+    )
+  }
 
 export async function getStaticPaths() {
     const paths = getAllPostsIds()
