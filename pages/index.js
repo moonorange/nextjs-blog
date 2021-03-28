@@ -18,7 +18,7 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <p>Hello. My name is Keigo Kida. I was born and raised in Osaka, Japan. I currently live in Tokyo and work as a software engineer in a start-up.</p>
         <p>
           <a href="https://github.com/moonorange" target="_blank">Github</a>
