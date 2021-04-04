@@ -3,17 +3,34 @@ import { getAllPostIds, getPostData } from '../../lib/posts'
 import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import Highlight from 'react-highlight';
+import ReactMarkdown from 'react-markdown';
 
-export default function Post({
-  postData
-}: {
-  postData: {
-    title: string
-    date: string
-    contentHtml: string
-  }
-}) {
+
+interface CodeBlockProps {
+  value: any;
+}
+
+interface postData {
+  content: string;
+  title: string;
+  date: string;
+}
+
+const CodeBlock: NextPage<CodeBlockProps> = ({ value }) => {
+  return (
+    <div>
+      <Highlight>
+        {value}
+      </Highlight>
+      <br />
+    </div>
+  )
+}
+
+export default function Post(postData : postData)
+{
   return (
     <Layout>
       <Head>
@@ -24,7 +41,14 @@ export default function Post({
         <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div>
+          <ReactMarkdown
+            source={postData.content}
+            renderers={{
+              code: CodeBlock
+            }}
+          />
+        </div>
       </article>
     </Layout>
   )
@@ -39,10 +63,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postData = await getPostData(params.id as string)
+  const result = await getPostData(params.id as string)
   return {
     props: {
-      postData
+      content: result.content,
+      title: result.data.title,
+      date: result.data.date,
     }
   }
 }
