@@ -47,8 +47,10 @@ export function getAllPostIds() {
 
 export interface postData {
   content: string;
-  title: string;
-  date: string;
+  data: {
+    title: string;
+    date: string;
+  }
 }
 
 export async function getPostData(id: string): Promise<postData> {

@@ -21,7 +21,7 @@ export default function Home({
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Hello. My name is Keigo Kida. I was born and raised in Osaka, Japan. I currently live in Tokyo and work as a software engineer in a start-up.</p>
+        <p>Thank you for stopping by! My name is Keigo Kida. Currently I live in Tokyo and work as a software engineer in a start-up.</p>
         <p>
           <a href="https://github.com/moonorange" target="_blank">Github</a>
           <br />
