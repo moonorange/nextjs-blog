@@ -6,8 +6,7 @@ date: '2021-03-26'
 # 概要
 
 ReactやReduxについてほとんど分からないという状態から学んだことをまとめた資料。
-
-Javascriptについても一部触れている。
+とりあえず様々な知識をざっくりまとめたものであるため深い知識はそれぞれで学習する必要がある。
 
 ## Javacript周辺の用語
 
@@ -15,6 +14,14 @@ Javascriptについても一部触れている。
 - webpack  コンパイラと連携しつつ大量のソースコードファイルをひとつにまとめ、種々の最適化を施すbundler
 - react-dom DOM を抽象化して React から操作できるようにするレンダラーのパッケージ
 - jest オールインワンのjavascriptテスティングフレームワーク
+
+## Promiseについて
+
+Promise オブジェクトは非同期処理の最終的な完了処理 (もしくは失敗) およびその結果の値を表現する。
+非同期処理とはある処理を終わるのを待たずに他の処理をすることである。
+
+Promise インターフェイスは作成時点では分からなくてもよい値へのプロキシである。
+これにより、非同期メソッドは、最終的な値を返すのではなく、未来のある時点で値を持つ Promise を返すことで、同期メソッドと同じように値を返すことができるようになる。
 
 
 ## async関数について
@@ -60,3 +67,5 @@ https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 ## 参考
 
 https://qiita.com/soarflat/items/1a9613e023200bbebcb3
+
+https://developer.mozilla.org/ja/
