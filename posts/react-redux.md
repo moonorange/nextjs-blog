@@ -11,6 +11,26 @@ JavaScript, ReactやReduxについてほとんど分からないという状態�
 # 非同期処理について
 
 まずはJavaScriptを使う上で重要な概念である非同期処理について説明していく。
+JavaScriptの非同期処理にはコールバック、Promise、async/awaitの3つがあり、それらについて説明する。
+
+## Callback関数について
+
+callbackとは`ある関数を他の関数に渡すこと`または`引数として渡される関数`のことを言う。
+他の関数は、何らかの条件が満たされたとき、または何らかの（非同期の）イベントが発生したときに、引数の関数を呼び出す。
+
+```javascript
+function foo() {
+  fs.readFile('/etc/passwd', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+  });
+  console.log('foo');
+}
+```
+
+radFile関数が終了したら2つ目の引数に渡したarrow関数を実行する。
+この場合、readFileの`終了を待たずにconsole.log('foo')が先に実行される。`
+
 
 ## Promiseについて
 
