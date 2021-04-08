@@ -82,6 +82,7 @@ function readFilePromise(path) {
 非同期処理の結果を取り出すthen()とcatch()について説明する。
 
 #### then
+
 then()は`2つの関数`を引数に取る。
 Promiseの状態がfulfilledになったら1番目の関数がrejectedになると二番目が実行される。
 
@@ -106,7 +107,7 @@ readFilePromise("/etc/passwd")
 Promiseオブジェクトを返す非同期処理をより簡単に書けるようにするものである。
 asyncを関数の前につけるとPromiseオブジェクトを返すようになる。
 
-```Javascript
+```javascript
 async function sample() {}
 ```
 async functionには以下の特徴がある。
@@ -122,6 +123,14 @@ async function内でPromiseの結果（resolve、reject）が返されるまで�
 以下のように、関数の前にawaitを指定すると、その関数のPromiseの結果が返されるまで待機する。
 
 ```javascript
+function sampleResolve(value) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(value);
+        }, 1000);
+    })
+}
+
 async function sample() {
     const result = await sampleResolve();
 
