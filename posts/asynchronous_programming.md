@@ -62,6 +62,7 @@ Promiseのコンストラクターは関数を引数に取る。そしてその�
 fs.readFile()をPromise化した例。
 
 ```javascript
+// Promiseのコンストラクタにresolveとrejectを引数に取るarrow関数を渡す
 function readFilePromise(path) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, (err, data) => {
@@ -76,13 +77,39 @@ function readFilePromise(path) {
 }
 ```
 
+### then(), catch()
+
+非同期処理の結果を取り出すthen()とcatch()について説明する。
+
+#### then
+then()は`2つの関数`を引数に取る。
+Promiseの状態がfulfilledになったら1番目の関数がrejectedになると二番目が実行される。
+
+```javascript
+readFilePromise("/etc/passwd")
+  .then(
+    (data) => {
+      // 読み出しに成功したらresolve()に渡した値が引数として渡される
+      console.log("OK", data);
+    },
+    (err) => {
+      // 読み出しに失敗するか fs.readFile() 自体が例外を投げたら
+      // reject()に渡した値が引数として渡される
+      console.log("error", err);
+    }
+  );
+```
+
 ## async関数について
 
 関数の前にasyncを宣言することにより、非同期関数（async function）を定義できる。
+Promiseオブジェクトを返す非同期処理をより簡単に書けるようにするものである。
+asyncを関数の前につけるとPromiseオブジェクトを返すようになる。
 
 ```Javascript
 async function sample() {}
 ```
+async functionには以下の特徴がある。
 
 - async functionは呼び出されるとPromiseを返す
 - async functionが値をreturnした場合、Promiseは戻り値をresolveする
@@ -92,7 +119,6 @@ async function sample() {}
 ### await
 
 async function内でPromiseの結果（resolve、reject）が返されるまで待機する（処理を一時停止する）演算子のこと。
-
 以下のように、関数の前にawaitを指定すると、その関数のPromiseの結果が返されるまで待機する。
 
 ```javascript
