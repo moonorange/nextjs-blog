@@ -7,6 +7,10 @@ date: '2021-04-05'
 # 概要
 
 JavaScriptを使う上で重要な概念である非同期処理について説明していく。
+非同期処理とは
+
+「ある関数が呼び出されたとき、戻り値として本来渡したい結果を返すのではなく、一度関数としては終了し（＝呼び出し元に戻る）、後で『本来渡したかった値』を返せる状態になったときに、呼び出し元にその値を通知する」という仕組み
+
 JavaScriptの非同期処理の重要概念はCallback、Promise、async/awaitの3つがあり、それらについて説明する。
 
 
@@ -139,10 +143,26 @@ async function sample() {
 }
 ```
 
+## まとめ
+
+非同期処理とはあるタスクの完了を待つ間に別の処理をすることである。
+JSの非同期処理の重要概念はcall back関数、Promise、async awaitの3つがある。
+
+callbackとはある関数に引数として与えられる関数のことを言い、何かしらの処理が完了された時に呼び戻す関数である。
+
+Promiseオブジェクトとはあとで値を返すことを約束するオブジェクトでありpending, fulfilled, rejectedの3つの内部状態を持つ
+Promiseのコンストラクタに引数として与えられる関数の引数としてresolve、rejectをとる
+resolveに引数を渡して実行すると状態がfulfilledになり、引数の値がPromiseオブジェクトが保持する値になる
+rejectに引数を渡して実行すると状態がrejectedになり、引数の値がPromiseオブジェクトが保持する値になる
+.thenで値を取得することができる
+
+async, awaitとはPromiseより簡潔に非同期処理を記述するためのシンタックスシュガーである。
+関数の前にasyncをつけるだけでPromiseを返す非同期処理を書ける。
+またasync関数の中でawaitを使うことで処理の完了を待つことができる。
 
 ## 参考
 
-async await
+async await入門
 https://qiita.com/soarflat/items/1a9613e023200bbebcb3
 
 mozilla
